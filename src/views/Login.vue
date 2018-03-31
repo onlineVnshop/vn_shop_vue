@@ -63,7 +63,9 @@ export default {
                   console.log(res)
                   if(res.data.code===0){
                       alert("登录成功")
-                      setCookie("username",this.username,60)
+                      setCookie("username",this.username,6000)
+                      setCookie("token",res.data.data.token,6000)
+                      console.log(res.data.data.token)
                       this.$router.push('/') 
                   }else if(res.data.code===2002){
                       alert("用户不存在，请重新注册")

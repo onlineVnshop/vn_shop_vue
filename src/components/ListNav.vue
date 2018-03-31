@@ -1,22 +1,32 @@
 <template>
     <div class="listNavContainer">
          <ul>
-            <li><a href="#">家居</a></li>
-            <li><a href="#">家具</a></li>
-            <li><a href="#">文具</a></li>
-            <li><a href="#">数码</a></li>
-            <li><a href="#">玩乐</a></li>
-            <li><a href="#">厨卫</a></li>
-            <li><a href="#">美食</a></li>
-            <li><a href="#">男装</a></li>
-            <li><a href="#">女装</a></li>
-            <li><a href="#">童装</a></li>
+            <li v-for="items in catList"><router-link to="/search:cat_id">{{items.cat_name}}</router-link></li>
         </ul>
     </div>
 </template>
 <script>
 export default {
-  name:"ListNav"
+  name:"ListNav",
+  data(){
+      return{
+          catList:[],
+      }
+  },
+  
+   created(){
+      this.$http({
+          method:"get",
+          url:"http://h6.duchengjiu.top/shop/api_cat.php",
+
+      }).then((res)=>{
+        //   console.log(res)
+          this.catList=res.data.data
+        //   console.log(this.catList)
+      }).catch((error)=>{
+          console.log(error)
+      })
+  }
 }
 </script>
 <style scoped>

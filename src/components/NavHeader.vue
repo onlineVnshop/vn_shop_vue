@@ -24,8 +24,8 @@
               </div>
           </div>
       </div>
-      <div class="navBottom">
-          <div class="navBottomContainer">
+      <div class="navBottom ">
+          <div class="navBottomContainer" id="header-bottom-content">
               <div class="logo"><a href="#"><img :src="vnLogo"/></a></div>
               <div class="headerSearch">
                   <input type="text" class="search" placeholder="请输入你要搜索的内容" name="search">
@@ -170,5 +170,6 @@ export default {
         width: 250px;
         height:50px;
     } */
+    
 </style>
 

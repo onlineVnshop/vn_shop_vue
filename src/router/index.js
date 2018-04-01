@@ -4,6 +4,7 @@ import Home from '@/views/Home'
 import Register from '@/views/Register'
 import Login from '@/views/Login'
 import Search from '@/views/Search'
+import GoodsDesc from '@/views/goodsDesc'
 
 Vue.use(Router)
 
@@ -28,6 +29,11 @@ export default new Router({
       path: '/search/:cat_id',
       name: 'Search',
       component: Search
+    },
+    {
+      path: '/goodsDesc',
+      name: 'GoodsDesc',
+      component: GoodsDesc
     },
   ]
 })

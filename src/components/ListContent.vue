@@ -2,7 +2,7 @@
   <div class="listContent">
       <ul>
           <li v-for="item in items">
-              <router-link to="">
+              <router-link :to="{path:'/goodsDesc',query: {goods_id: item.goods_id}}">
                   <img :src="item.goods_thumb">
                   <p>{{item.goods_name}}</p>
                   <div class="cover">
@@ -20,7 +20,8 @@ export default {
       return{
           items:[],
           page:1,
-          pagesize:20
+          pagesize:20,
+        //   goodsId:''
       }
   },
   created(){
@@ -40,7 +41,9 @@ export default {
         //           }]
       }).then((res)=>{
           console.log(res.data.data);
-          this.items=res.data.data
+          this.items=res.data.data;
+          this.goodsId=res.data.data.goods_id
+        //   this.goods_id=res.data.data.goods_id;
       }).catch((error)=>{
           console.log(error)
       })

@@ -21,32 +21,62 @@ export default {
           items:[],
           page:1,
           pagesize:20,
+          pageAsize:10,
         //   goodsId:''
       }
   },
+//   mounted(){
+//       this.$http({
+//           method:"get",
+//           url:"http://h6.duchengjiu.top/shop/api_goods.php?page="+this.page+"&pagesize="+this.pagesize,
+//         //   data:{
+//         //       page:this.page,
+//         //       pagesize:this.pagesize,
+//         //   },
+//         //  transformRequest:[function(data){
+//         //               let ret='';
+//         //               for(let it in data){
+//         //                   ret+=encodeURIComponent(it)+'='+encodeURIComponent(data[it])+'&'
+//         //               }
+//         //               return ret
+//         //           }]
+//       }).then((res)=>{
+//           console.log(res.data.data);
+//           this.items=res.data.data;
+//           this.goodsId=res.data.data.goods_id
+//         //   this.goods_id=res.data.data.goods_id;
+//       }).catch((error)=>{
+//           console.log(error)
+//       })
+  
+//   },
   created(){
-      this.$http({
-          method:"get",
-          url:"http://h6.duchengjiu.top/shop/api_goods.php?page="+this.page+"&pagesize="+this.pagesize,
-        //   data:{
-        //       page:this.page,
-        //       pagesize:this.pagesize,
-        //   },
-        //  transformRequest:[function(data){
-        //               let ret='';
-        //               for(let it in data){
-        //                   ret+=encodeURIComponent(it)+'='+encodeURIComponent(data[it])+'&'
-        //               }
-        //               return ret
-        //           }]
-      }).then((res)=>{
-          console.log(res.data.data);
-          this.items=res.data.data;
-          this.goodsId=res.data.data.goods_id
-        //   this.goods_id=res.data.data.goods_id;
-      }).catch((error)=>{
-          console.log(error)
-      })
+      this.fetchData()
+  },
+  methods:{
+      
+      fetchData(){
+        this.catId = this.$route.query.cat_id;
+        // console.log(this.catId)
+        this.$http({
+            method:"get",
+            url:"http://h6.duchengjiu.top/shop/api_goods.php?cat_id="+this.catId+"&page="+this.page+"&pagesize="+this.pageAsize,
+        }).then((res)=>{
+            this.items=res.data.data;
+            // console.log(this.items)
+            
+        }).catch((error)=>{
+            console.log(error)
+        })
+        
+      }
+  },
+  watch:{
+       '$route'(to,from){
+        this.id=this.$route.query.id;
+        this.fetchData();
+      }
+    
   }
 }
 </script>

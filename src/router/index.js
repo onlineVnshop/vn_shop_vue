@@ -5,10 +5,12 @@ import Register from '@/views/Register'
 import Login from '@/views/Login'
 import Search from '@/views/Search'
 import GoodsDesc from '@/views/goodsDesc'
+import Content from '@/views/Content'
 
 Vue.use(Router)
 
 export default new Router({
+  mode: 'history',
   routes: [
     {
       path: '/',
@@ -26,7 +28,7 @@ export default new Router({
       component: Login
     },
     {
-      path: '/search/:cat_id',
+      path: '/search',
       name: 'Search',
       component: Search
     },
@@ -34,6 +36,11 @@ export default new Router({
       path: '/goodsDesc',
       name: 'GoodsDesc',
       component: GoodsDesc
+    },
+    {
+      path: '/content',
+      name: 'Content',
+      component: Content
     },
   ]
 })

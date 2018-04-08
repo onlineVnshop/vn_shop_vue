@@ -1,7 +1,9 @@
 <template>
     <div class="listNavContainer">
          <ul>
-            <li v-for="items in catList"><router-link to="/search:cat_id">{{items.cat_name}}</router-link></li>
+            <li v-for="items in catList">
+                <router-link :to="{path:'/content',query: {cat_id: items.cat_id}}">{{items.cat_name}}</router-link>
+            </li>
         </ul>
     </div>
 </template>

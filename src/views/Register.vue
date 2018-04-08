@@ -123,7 +123,7 @@ export default {
                   console.log(res.data.code)
                   if(res.data.code===0){
                       alert("注册成功")
-
+                     this.$router.push('/login') 
                   }else if(res.data.code===2001){
                       alert("用户已存在，请重新注册")
                   }

@@ -27,17 +27,7 @@ export default {
     ListContent,
     ContentBottom
   },
-  // data(){
-  //   return{
-  //       goods
-  //   }
-  // }
-  // mounted(){
-  //   scroll()
-  // },
-  methods:{
 
-  }
 }
 </script>
 <style scoped>

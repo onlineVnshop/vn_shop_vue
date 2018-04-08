@@ -26,10 +26,10 @@
       </div>
       <div class="navBottom ">
           <div class="navBottomContainer" id="header-bottom-content">
-              <div class="logo"><a href="#"><img :src="vnLogo"/></a></div>
+              <div class="logo"><router-link to="/"><img :src="vnLogo"/></router-link></div>
               <div class="headerSearch">
-                  <input type="text" class="search" placeholder="请输入你要搜索的内容" name="search">
-                  <button class="searchBtn">搜索</button>
+                  <input type="text" class="search" placeholder="请输入你要搜索的内容" name="search" v-model.trim="searchText">
+                  <button class="searchBtn" @click="getSearch()">搜索</button>
               </div>
               <div class="headerBottomCart" :style="{backgroundImage: 'url(' + cartIcon + ')' }">
                   <em>购物车</em>
@@ -48,7 +48,11 @@ export default {
           cartIcon:"../../../static/image/header/shopping_17.001360544218px_1156679_easyicon.net.png",
           noregister:true,
           logined:false,
-          userID:""
+          userID:"",
+          searchText:"",
+          page:1,
+          pagesize:10,
+          items:[]
       }
   },
    mounted(){  
@@ -58,9 +62,25 @@ export default {
         this.logined=true;
         this.userID=getCookie("username")
     }
+   
  }, 
   methods:{
-      
+        getSearch(){
+           
+             this.$emit("getSearch", this.items)
+                    this.$router.push({  
+                    path: '/search',   
+                    name: 'Search',  
+           
+                    query: {  
+                        search_text: this.searchText,   
+                        page: this.page,
+                        pagesize:this.pagesize 
+                    }  
+                }) 
+      },
+
+
   }
 }
 </script>
